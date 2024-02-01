@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/acd19ml/dissertation/internal/service"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -32,6 +33,8 @@ func main() {
 	}
 	defer db.Close()
 
+	service.SetDB(db)
+
 	// Verify the database connection
 	if err = db.Ping(); err != nil {
 		log.Fatal(err)
@@ -41,7 +44,7 @@ func main() {
 	r := mux.NewRouter()
 
 	// Define your routes here, for example:
-	r.HandleFunc("/users", getUsers).Methods("GET")
+	r.HandleFunc("/users", service.getUsers).Methods("GET")
 	r.HandleFunc("/users/{id}", getUser).Methods("GET")
 	r.HandleFunc("/users", createUser).Methods("POST")
 	r.HandleFunc("/users/{id}", updateUser).Methods("PUT")

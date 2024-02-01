@@ -121,3 +121,17 @@ func deleteUser(w http.ResponseWriter, r *http.Request) {
 	// If the user was deleted successfully, return a 204 No Content response
 	w.WriteHeader(http.StatusNoContent)
 }
+
+func getUserByID(id string) (*User, error) {
+	var user User
+	err := db.QueryRow("SELECT id, first_name, last_name, email FROM users WHERE id = ?", id).Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func deleteUserByID(id string) error {
+	_, err := db.Exec("DELETE FROM users WHERE id = ?", id)
+	return err
+}
