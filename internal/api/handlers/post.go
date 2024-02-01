@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/acd19ml/dissertation/pkg/models"
 )
 
 func createUser(w http.ResponseWriter, r *http.Request) {

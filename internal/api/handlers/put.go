@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/acd19ml/dissertation/pkg/models"
 )
 
 func updateUser(w http.ResponseWriter, r *http.Request) {

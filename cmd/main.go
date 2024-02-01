@@ -8,6 +8,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
+	"github.com/acd19ml/dissertation/pkg/models"
+	"github.com/acd19ml/dissertation/internal/api/handlers"
 )
 
 func main() {

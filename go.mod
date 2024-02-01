@@ -1,4 +1,4 @@
-module acd19ml/dissertation
+module github.com/acd19ml/dissertation
 
 go 1.21.6
 

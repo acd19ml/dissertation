@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/acd19ml/dissertation/pkg/models"
 )
 
 func deleteUser(w http.ResponseWriter, r *http.Request) {
