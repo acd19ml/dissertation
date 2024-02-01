@@ -4,12 +4,12 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
-	"github.com/acd19ml/dissertation/pkg/models"
-	"github.com/acd19ml/dissertation/internal/api/handlers"
 )
 
 func main() {
@@ -31,5 +31,23 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
+
+	// Verify the database connection
+	if err = db.Ping(); err != nil {
+		log.Fatal(err)
+	}
+
+	// Initialize the router
+	r := mux.NewRouter()
+
+	// Define your routes here, for example:
+	r.HandleFunc("/users", getUsers).Methods("GET")
+	r.HandleFunc("/users/{id}", getUser).Methods("GET")
+	r.HandleFunc("/users", createUser).Methods("POST")
+	r.HandleFunc("/users/{id}", updateUser).Methods("PUT")
+	r.HandleFunc("/users/{id}", deleteUser).Methods("DELETE")
+
+	// Start the server
+	log.Fatal(http.ListenAndServe(":9090", r))
 
 }
