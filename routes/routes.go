@@ -3,13 +3,15 @@ package routes
 import (
 	"net/http"
 
+	. "github.com/acd19ml/dissertation/database"
+	. "github.com/acd19ml/dissertation/models"
 	"github.com/gin-gonic/gin"
 )
 
 func ListBooks(c *gin.Context) {
 	ListBooks := List_Books()
 	if ListBooks == nil {
-		c.Indentifier(http.StatusNotFound, gin.H{"message": "No books found"})
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No books found"})
 		return
 	}
 	c.IndentedJSON(http.StatusOK, gin.H{"message": "Books found", "data": ListBooks})

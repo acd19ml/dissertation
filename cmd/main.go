@@ -1,6 +1,8 @@
 package main
 
 import (
+	. "github.com/acd19ml/dissertation/database"
+	. "github.com/acd19ml/dissertation/routes"
 	"github.com/gin-gonic/gin"
 )
 
